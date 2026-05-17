@@ -104,5 +104,7 @@ while True:
     else:
         clientes.append(nombre.title())
 
+clientes.sort()
+print("\nClientes ordenados:")
 for i in clientes:
-    print("Cliente: ", i.capitalize())
+    print("Cliente:", i.capitalize())
