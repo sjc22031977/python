@@ -92,19 +92,46 @@
 #     print("Cliente", i+1, ": ", clientes[i].capitalize()) 
 #     i += 1 
 
-clientes = []
-while True:
-    nombre = input("Introduce su nombre: (Para salir, escriba 'Fin') ")
-    if nombre == "Fin":
-        print("Programa finalizado.")
-        break
-    elif nombre == "":
-        print("ERROR!")
-        nombre = input("Introduce su nombre: ")
-    else:
-        clientes.append(nombre.title())
+# clientes = []
+# while True:
+#     nombre = input("Introduce su nombre: (Para salir, escriba 'Fin') ")
+#     if nombre == "Fin":
+#         print("Programa finalizado.")
+#         break
+#     elif nombre == "":
+#         print("ERROR!")
+#         nombre = input("Introduce su nombre: ")
+#     else:
+#         clientes.append(nombre.title())
 
-clientes.sort()
-print("\nClientes ordenados:")
-for i in clientes:
-    print("Cliente:", i.capitalize())
+# clientes.sort()
+# print("\nClientes ordenados:")
+# for i in clientes:
+#     print("Cliente:", i.capitalize())
+
+# Creamos una lista vacía para almacenar los diccionarios 
+productos = [] 
+# Bucle para ingresar los datos de varios productos
+while True: 
+    print("\nIngresá los datos del producto.[vacío para finalizar]:") 
+    nombre = input("Nombre del producto: ") 
+
+    # Condición para salir del bucle si el nombre está vacío 
+    if nombre == "": 
+        break
+
+    precio = float(input("Precio del producto: "))
+
+    # Creamos un diccionario con los datos ingresados 
+    producto = { 
+        "nombre": nombre, 
+        "precio": precio 
+    } 
+   
+    # Agregamos el diccionario a la lista de productos 
+    productos.append(producto) 
+ 
+# Mostramos los datos de todos los productos registrados 
+print("\n--- Productos Registrados ---") 
+for producto in productos: 
+   print(f"Nombre: {producto['nombre'].capitalize()}, Precio: {producto['precio']}") 
