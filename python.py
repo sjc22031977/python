@@ -1,97 +1,3 @@
-# nombre = input("Introduce su nombre: ") 
-# apellido = input("Introduce tu apellido: ")
-# edad = int(input("Introduce su edad: "))
-# email = input("Introduce su correo electrónico: ")
-# total = 0
-# if nombre == "" or apellido == "" or edad < 1 or email == "" or email.count("@") != 1:
-#     print("ERROR!")
-# else:
-#     print("Nombre: ", nombre.title())
-#     print("Apellido: ", apellido.title())
-#     print("Edad: ", edad, "años")
-#     print("Correo electrónico: ", email.strip())
-#     if edad < 13: 
-#         print("Sos menor a trece años.")
-#     elif edad < 18: 
-#         print("Sos un o una adolescente.")
-#     elif edad < 60: 
-#         print("Sos una persona adulta.")
-#     else: 
-#         print("Sos una persona adulta mayor.")
-
-# for i in range(0, 6):
-#     ingreso = int(input("Introduce sus ingresos del ultimo mes: "))
-#     total += ingreso
-#     if ingreso <= 0:
-#         print("ERROR!")
-#         ingreso = int(input("Introduce sus ingresos del ultimo mes: "))
-#         total += ingreso
-#     else:
-#         print("Ingresos: ", ingreso, "pesos")
-
-# print("Total de ingresos: ", total, "pesos")
-# print("Promedio mensual: ", total / 6, "pesos")
-# clientes = []
-# for i in range(0, 6):
-#     cliente = input("Introduce el nombre del cliente: ")
-#     if cliente == "":
-#         print("Cliente", i+1, ": [ALERTA] Nombre no válido ")
-#         cliente = input("Introduce el nombre del cliente: ")
-#     else:
-#         print("Cliente", i+1, ": ", cliente.title())
-#         clientes.append(cliente.title())
-
-# i = 0 
-# while i < len(clientes): 
-#     print("Cliente", i+1, ": ", clientes[i].capitalize()) 
-# nombre = input("Introduce su nombre: ") 
-# apellido = input("Introduce tu apellido: ")
-# edad = int(input("Introduce su edad: "))
-# email = input("Introduce su correo electrónico: ")
-# total = 0
-# if nombre == "" or apellido == "" or edad < 1 or email == "" or email.count("@") != 1:
-#     print("ERROR!")
-# else:
-#     print("Nombre: ", nombre.title())
-#     print("Apellido: ", apellido.title())
-#     print("Edad: ", edad, "años")
-#     print("Correo electrónico: ", email.strip())
-#     if edad < 13: 
-#         print("Sos menor a trece años.")
-#     elif edad < 18: 
-#         print("Sos un o una adolescente.")
-#     elif edad < 60: 
-#         print("Sos una persona adulta.")
-#     else: 
-#         print("Sos una persona adulta mayor.")
-
-# for i in range(0, 6):
-#     ingreso = int(input("Introduce sus ingresos del ultimo mes: "))
-#     total += ingreso
-#     if ingreso <= 0:
-#         print("ERROR!")
-#         ingreso = int(input("Introduce sus ingresos del ultimo mes: "))
-#         total += ingreso
-#     else:
-#         print("Ingresos: ", ingreso, "pesos")
-
-# print("Total de ingresos: ", total, "pesos")
-# print("Promedio mensual: ", total / 6, "pesos")
-# clientes = []
-# for i in range(0, 6):
-#     cliente = input("Introduce el nombre del cliente: ")
-#     if cliente == "":
-#         print("Cliente", i+1, ": [ALERTA] Nombre no válido ")
-#         cliente = input("Introduce el nombre del cliente: ")
-#     else:
-#         print("Cliente", i+1, ": ", cliente.title())
-#         clientes.append(cliente.title())
-
-# i = 0 
-# while i < len(clientes): 
-#     print("Cliente", i+1, ": ", clientes[i].capitalize()) 
-#     i += 1 
-
 # clientes = []
 # while True:
 #     nombre = input("Introduce su nombre: (Para salir, escriba 'Fin') ")
@@ -109,29 +15,85 @@
 # for i in clientes:
 #     print("Cliente:", i.capitalize())
 
-# Creamos una lista vacía para almacenar los diccionarios 
-productos = [] 
-# Bucle para ingresar los datos de varios productos
-while True: 
-    print("\nIngresá los datos del producto.[vacío para finalizar]:") 
-    nombre = input("Nombre del producto: ") 
+# # Creamos una lista vacía para almacenar los diccionarios 
+# productos = [] 
+# # Bucle para ingresar los datos de varios productos
+# while True: 
+#     print("\nIngresá los datos del producto.[vacío para finalizar]:") 
+#     nombre = input("Nombre del producto: ") 
 
-    # Condición para salir del bucle si el nombre está vacío 
-    if nombre == "": 
-        break
+#     # Condición para salir del bucle si el nombre está vacío 
+#     if nombre == "": 
+#         break
 
-    precio = float(input("Precio del producto: "))
+#     precio = float(input("Precio del producto: "))
 
-    # Creamos un diccionario con los datos ingresados 
-    producto = { 
-        "nombre": nombre, 
-        "precio": precio 
-    } 
+#     # Creamos un diccionario con los datos ingresados 
+#     producto = { 
+#         "nombre": nombre, 
+#         "precio": precio 
+#     } 
    
-    # Agregamos el diccionario a la lista de productos 
-    productos.append(producto) 
+#     # Agregamos el diccionario a la lista de productos 
+#     productos.append(producto) 
  
-# Mostramos los datos de todos los productos registrados 
-print("\n--- Productos Registrados ---") 
-for producto in productos: 
-   print(f"Nombre: {producto['nombre'].capitalize()}, Precio: {producto['precio']}") 
+# # Mostramos los datos de todos los productos registrados 
+# print("\n--- Productos Registrados ---") 
+# for producto in productos: 
+#    print(f"Nombre: {producto['nombre'].capitalize()}, Precio: {producto['precio']}") 
+
+productos = []
+while True:
+    print("\nSistema de Gestión Básica De Productos")
+    print("\n1. Agregar producto")
+    print("\n2. Mostrar productos")
+    print("\n3. Buscar producto")
+    print("\n4. Eliminar producto")
+    print("\n5. Salir")
+    print("\n")
+    opcion = input("Seleccione una opción: ")
+    if opcion == "1":
+        nombre = input("Nombre del producto: ")
+        categoria = input("Categoría del producto: ")
+        precio = float(input("Precio del producto: "))
+        if precio < 0:
+            print("ERROR! El precio no puede ser negativo.")
+            continue
+        precio = round(precio, 0)
+        producto = {
+            "nombre": nombre,
+            "categoria": categoria,
+            "precio": precio
+        }
+        productos.append(producto)
+        print("Producto agregado exitosamente.")
+    elif opcion == "2":
+        print("\n--- Productos Registrados ---")
+        for producto in productos:
+            print(f"Nombre: {producto['nombre'].capitalize()}, Precio: {producto['precio']}")
+    elif opcion == "3":
+        busqueda = input("Ingrese el nombre del producto a buscar: ")
+        encontrado = False
+        for producto in productos:
+            if producto["nombre"].lower() == busqueda.lower():
+                print(f"Producto encontrado: Nombre: {producto['nombre'].capitalize()}, Precio: {producto['precio']}")
+                encontrado = True
+                break
+        if not encontrado:
+            print("Producto no encontrado.")
+    elif opcion == "4":
+        eliminar = input("Ingrese el nombre del producto a eliminar: ")
+        eliminado = False
+        for producto in productos:
+            if producto["nombre"].lower() == eliminar.lower():
+                productos.remove(producto)
+                print("Producto eliminado exitosamente.")
+                eliminado = True
+                break
+        if not eliminado:
+            print("Producto no encontrado.")
+    elif opcion == "5":
+        print("Saliendo del programa. ¡Hasta luego!")
+        break
+    else:
+        print("Opción no válida. Por favor, seleccione una opción del 1 al 5.")
