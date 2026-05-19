@@ -1,47 +1,3 @@
-# clientes = []
-# while True:
-#     nombre = input("Introduce su nombre: (Para salir, escriba 'Fin') ")
-#     if nombre == "Fin":
-#         print("Programa finalizado.")
-#         break
-#     elif nombre == "":
-#         print("ERROR!")
-#         nombre = input("Introduce su nombre: ")
-#     else:
-#         clientes.append(nombre.title())
-
-# clientes.sort()
-# print("\nClientes ordenados:")
-# for i in clientes:
-#     print("Cliente:", i.capitalize())
-
-# # Creamos una lista vacía para almacenar los diccionarios 
-# productos = [] 
-# # Bucle para ingresar los datos de varios productos
-# while True: 
-#     print("\nIngresá los datos del producto.[vacío para finalizar]:") 
-#     nombre = input("Nombre del producto: ") 
-
-#     # Condición para salir del bucle si el nombre está vacío 
-#     if nombre == "": 
-#         break
-
-#     precio = float(input("Precio del producto: "))
-
-#     # Creamos un diccionario con los datos ingresados 
-#     producto = { 
-#         "nombre": nombre, 
-#         "precio": precio 
-#     } 
-   
-#     # Agregamos el diccionario a la lista de productos 
-#     productos.append(producto) 
- 
-# # Mostramos los datos de todos los productos registrados 
-# print("\n--- Productos Registrados ---") 
-# for producto in productos: 
-#    print(f"Nombre: {producto['nombre'].capitalize()}, Precio: {producto['precio']}") 
-
 productos = []
 while True:
     print("\nSistema de Gestión Básica De Productos")
@@ -69,24 +25,25 @@ while True:
         print("Producto agregado exitosamente.")
     elif opcion == "2":
         print("\n--- Productos Registrados ---")
-        for producto in productos:
-            print(f"Nombre: {producto['nombre'].capitalize()}, Precio: {producto['precio']}")
+        productos.sort(key=lambda x: x["nombre"])
+        for i, producto in enumerate(productos, 1):
+            print(f"Codigo: {i}, Nombre: {producto['nombre'].capitalize()}, Categoria: {producto['categoria'].capitalize()}, Precio: {producto['precio']}")
     elif opcion == "3":
         busqueda = input("Ingrese el nombre del producto a buscar: ")
         encontrado = False
-        for producto in productos:
+        for i, producto in enumerate(productos, 1):
             if producto["nombre"].lower() == busqueda.lower():
-                print(f"Producto encontrado: Nombre: {producto['nombre'].capitalize()}, Precio: {producto['precio']}")
+                print(f"Codigo: {i}, Nombre: {producto['nombre'].capitalize()}, Categoria: {producto['categoria'].capitalize()}, Precio: {producto['precio']}")
                 encontrado = True
                 break
         if not encontrado:
             print("Producto no encontrado.")
     elif opcion == "4":
-        eliminar = input("Ingrese el nombre del producto a eliminar: ")
+        eliminar = input("Ingrese el código del producto a eliminar: ")
         eliminado = False
-        for producto in productos:
-            if producto["nombre"].lower() == eliminar.lower():
-                productos.remove(producto)
+        for i, producto in enumerate(productos, 1):
+            if str(i) == eliminar:
+                productos.pop(i-1)
                 print("Producto eliminado exitosamente.")
                 eliminado = True
                 break
