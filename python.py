@@ -1,12 +1,19 @@
+# Importamos el módulo datetime
+import datetime 
+
+# Importamos el módulo Colorama
+from colorama import Fore, init 
+init() 
+
 productos = []
 while True:
-    print("\nSistema de Gestión Básica De Productos")
-    print("\n1. Agregar producto")
-    print("\n2. Mostrar productos")
-    print("\n3. Buscar producto")
-    print("\n4. Eliminar producto")
-    print("\n5. Salir")
-    print("\n")
+    print(Fore.CYAN + "\nSistema de Gestión Básica De Productos")
+    print(Fore.WHITE + "\n1. Agregar producto")
+    print(Fore.WHITE + "\n2. Mostrar productos")
+    print(Fore.WHITE + "\n3. Buscar producto")
+    print(Fore.WHITE + "\n4. Eliminar producto")
+    print(Fore.WHITE + "\n5. Salir")
+    print(Fore.WHITE + "\n")
     opcion = input("Seleccione una opción: ")
     if opcion == "1":
         nombre = input("Nombre del producto: ")
@@ -27,7 +34,7 @@ while True:
         print("\n--- Productos Registrados ---")
         productos.sort(key=lambda x: x["nombre"])
         for i, producto in enumerate(productos, 1):
-            print(f"Codigo: {i}, Nombre: {producto['nombre'].capitalize()}, Categoria: {producto['categoria'].capitalize()}, Precio: {producto['precio']}")
+            print(f"Codigo: {i}, Nombre: {producto['nombre'].capitalize()}, Categoria: {producto['categoria'].capitalize()}, Precio: {producto['precio']}, Fecha de registro: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     elif opcion == "3":
         busqueda = input("Ingrese el nombre del producto a buscar: ")
         encontrado = False
