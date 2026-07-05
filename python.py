@@ -23,38 +23,91 @@ while True:
             print("ERROR! El precio no puede ser negativo.")
             continue
         precio = round(precio, 0)
-        producto = {
-            "nombre": nombre,
-            "categoria": categoria,
-            "precio": precio
-        }
-        productos.append(producto)
-        print("Producto agregado exitosamente.")
+
+        # Obtener el próximo código autonumérico
+        try:
+            with open("datos.txt", "r") as archivo:
+                lineas = archivo.readlines()
+                codigo = len(lineas) + 1
+        except FileNotFoundError:
+            codigo = 1  # Si el archivo no existe, empezamos desde 1
+
+        #producto = {
+        #    "nombre": nombre,
+        #    "categoria": categoria,
+        #    "precio": precio,
+        #    "fechaRegistro": datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        #}
+        #productos.append(producto)
+        # Escribir los productos en un archivo
+          
+        archivo = open("datos.txt", "a") 
+        archivo.write(str(codigo)+";"+nombre+";"+categoria+";"+str(precio)+";"+datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')+"\n") 
+        archivo.close()    
+        #print("Producto agregado exitosamente.")
+        print(f"Producto agregado exitosamente. Código asignado: {codigo}")
     elif opcion == "2":
+        # Leer y mostrar el contenido del archivo 
+        archivo = open("datos.txt", "r") 
         print("\n--- Productos Registrados ---")
-        productos.sort(key=lambda x: x["nombre"])
-        for i, producto in enumerate(productos, 1):
-            print(f"Codigo: {i}, Nombre: {producto['nombre'].capitalize()}, Categoria: {producto['categoria'].capitalize()}, Precio: {producto['precio']}, Fecha de registro: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        for linea in archivo:
+            codigo, nombre, categoria, precio, fecha = linea.strip().split(";") 
+            print(f"Codigo: {codigo}, Nombre: {nombre}, Categoria: {categoria}, Precio: {precio}, Fecha de registro: {fecha}")
+        archivo.close() 
+        #productos.sort(key=lambda x: x["nombre"])
+        #for i, producto in enumerate(productos, 1):
+        #    print(f"Codigo: {i}, Nombre: {producto['nombre'].capitalize()}, Categoria: {producto['categoria'].capitalize()}, Precio: {producto['precio']}, Fecha de registro: {producto['fechaRegistro']}")
     elif opcion == "3":
+        # Buscar un producto por nombre
         busqueda = input("Ingrese el nombre del producto a buscar: ")
         encontrado = False
-        for i, producto in enumerate(productos, 1):
-            if producto["nombre"].lower() == busqueda.lower():
-                print(f"Codigo: {i}, Nombre: {producto['nombre'].capitalize()}, Categoria: {producto['categoria'].capitalize()}, Precio: {producto['precio']}")
+        archivo = open("datos.txt", "r") 
+        print("\n--- Producto Registrado ---")
+
+        for linea in archivo:
+            codigo, nombre, categoria, precio, fecha = linea.strip().split(";") 
+            #if producto["nombre"].lower() == busqueda.lower():
+            #   print(f"Codigo: {i}, Nombre: {producto['nombre'].capitalize()}, Categoria: {producto['categoria'].capitalize()}, Precio: {producto['precio']} Fecha de registro: {producto['fechaRegistro']}")
+            if codigo == busqueda:
+                print(f"Codigo: {codigo}, Nombre: {nombre}, Categoria: {categoria}, Precio: {precio}, Fecha de registro: {fecha}")
                 encontrado = True
-                break
+                break 
+            #print(linea.strip()) 
+        archivo.close() 
+        #for i, producto in enumerate(productos, 1):
+        #    if producto["nombre"].lower() == busqueda.lower():
+        #        print(f"Codigo: {i}, Nombre: {producto['nombre'].capitalize()}, Categoria: {producto['categoria'].capitalize()}, Precio: {producto['precio']} Fecha de registro: {producto['fechaRegistro']}")
+        #        encontrado = True
+        #        break
         if not encontrado:
             print("Producto no encontrado.")
     elif opcion == "4":
+        # Eliminar un producto por nombre
         eliminar = input("Ingrese el código del producto a eliminar: ")
         eliminado = False
-        for i, producto in enumerate(productos, 1):
-            if str(i) == eliminar:
-                productos.pop(i-1)
-                print("Producto eliminado exitosamente.")
-                eliminado = True
-                break
-        if not eliminado:
+        #for i, producto in enumerate(productos, 1):
+        #    if str(i) == eliminar:
+        #        productos.pop(i-1)
+        #        print("Producto eliminado exitosamente.")
+        #        eliminado = True
+        #        break
+        # Leer todas las líneas
+        with open("datos.txt", "r") as archivo:
+            lineas = archivo.readlines()
+
+        # Abrir el archivo en modo escritura para reescribirlo
+        with open("datos.txt", "w") as archivo:
+            for linea in lineas:
+                codigo, nombre, categoria, precio, fecha = linea.strip().split(";")
+                if codigo != eliminar:
+                    archivo.write(linea)
+                else:
+                    eliminado = True
+        #if not eliminado:
+        #    print("Producto no encontrado.")
+        if eliminado:
+            print("Producto eliminado exitosamente.")
+        else:
             print("Producto no encontrado.")
     elif opcion == "5":
         print("Saliendo del programa. ¡Hasta luego!")
